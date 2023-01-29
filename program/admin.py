@@ -15,12 +15,10 @@ for field in Olevel._meta.get_fields():
 class RegistrationAdmin(admin.ModelAdmin):
     list_display = ['application_id','user','status']
     ordering = ['application_id']
-    readonly_fields = Regfields    
 
 class OlevelAdmin(admin.ModelAdmin):
     list_display = ['registration','o_level_status','examination_type']
     ordering = ['registration']
-    readonly_fields = Olfields
     
 
     # def save_model(self, request, obj, form, change):

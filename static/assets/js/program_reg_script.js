@@ -889,6 +889,19 @@ var col_id_issued = document.getElementById("col_id_date_issued");
 var col_id_expiry = document.getElementById("col_id_date_expiry");
 var disab_type_col = document.getElementById("col_disability_type");
 
+var file_photo_passport_clear_id = this.document.getElementById("file_photo_passport-clear_id");
+var file_identification_clear_id = this.document.getElementById("file_identification-clear_id");
+var file_first_certificate_clear_id = this.document.getElementById("file_first_certificate-clear_id");
+var file_first_testimonial_clear_id = this.document.getElementById("file_first_testimonial-clear_id");
+var file_second_certificate_clear_id = this.document.getElementById("file_second_certificate-clear_id");
+var file_second_testimonial_clear_id = this.document.getElementById("file_second_testimonial-clear_id");
+var file_awaiting_exam_slip_clear_id = this.document.getElementById("file_awaiting_exam_slip-clear_id");
+var file_scratch_card_clear_id = this.document.getElementById("file_scratch_card-clear_id");
+
+clear_list = [file_photo_passport_clear_id,file_identification_clear_id,file_first_certificate_clear_id,
+              file_first_testimonial_clear_id,file_second_certificate_clear_id,file_second_testimonial_clear_id,
+              file_awaiting_exam_slip_clear_id,file_scratch_card_clear_id]
+
 //program
 var session = this.document.getElementById("id_session");
 var type = document.getElementById("id_p_type");
@@ -986,6 +999,8 @@ var file_scratch_card = document.getElementById("id_file_scratch_card");
 const list_5 = [file_photo_passport,file_identification,file_first_certificate,file_first_testimonial,
                 file_second_certificate,file_second_testimonial,file_awaiting_exam_slip,file_scratch_card]
 
+const list_5_values = [file1,file2,file3,file4,file5,file6,file7,file8]
+
 var prev = document.querySelectorAll("#prev");
 var save = document.querySelectorAll("#save");
 var withdraw = document.querySelectorAll("#withdraw");
@@ -997,6 +1012,7 @@ var modal = new bootstrap.Modal(addModal);
 var modal_body = document.getElementById("modal-body");
 var modal_title = document.getElementById("modal-title");
 var modal_widthdraw = document.getElementById("modal-widthdraw");
+var modal_submit = document.getElementById("modal-submit");
 
 
 // var tab = document.querySelectorAll('#nav-requirement-tab');
@@ -1097,6 +1113,7 @@ window.addEventListener("load",
   function(){
     tabstate();
     hideprevnext();
+    func_clear_list();
     type.disabled = true;
     faculty.disabled = true;
     course.disabled = true;
@@ -1281,9 +1298,10 @@ function func_all_validate(){
   }
   to_dict(list_4,data_4_1,data_4_1_validate);
   var nextofkin_er = func_data_all(data_4_1_validate);
-  to_dict(list_5,data_5_1,data_5_1_validate);
-  var files_er = []
-  files_er = func_data(data_5_1_validate,requirement_error);
+  to_dict_file(list_5,data_5_1,data_5_1_validate);
+  var files_er = ''
+  files_er = func_data_all(data_5_1_validate);
+  console.log(files_er)
   modal_body.innerHTML = '';
   modal_title.innerHTML = ''
   modal_title.innerHTML = 'Required Fields'
@@ -1309,19 +1327,24 @@ function func_all_validate(){
     output_all(files_er,'Requirements');
   }
   if(program_er == 0 && personal_er == 0 && education_er1 == 0 && education_er12 == 0 && nextofkin_er == 0 && files_er == 0){
-    saving_data_all(data_1_1,'program');
-    saving_data_all(data_2_1,'personal');
-    saving_data_all(data_3_1,'o_level_1');
-    if (o_level_status.value == 'Two Sitting'){
-      saving_data_all(data_3_2,'o_level_2');      
-    }
-    saving_data_all(data_4_1,'next_of_kin');
-    saving_data_file(data_5_1,'requirement','',4);
-//    saving_data_all({'status':2},'all');
-//    window.location = '/ijmb/'
+    modal_body.innerHTML = ''
+    modal_title.innerHTML = ''
+    modal_title.innerHTML = 'Submit Comfirmation'
+    var add = document.createElement("h5")
+    add.classList = ["text-danger"]
+    add.innerHTML = "Make sure you have saved all sections including the requirement section."
+    modal_body.append(add)
+    var add = document.createElement("h6")
+    add.classList = ["text-danger"]
+    add.innerHTML = "Once submiited you can't change any data provided. Any required data missing will cause the widthdrawal of the application"
+    modal_body.append(add)
+    modal_submit.hidden = false;
+    modal_widthdraw.hidden = true;  
+    modal.show()  
   }
   else{
     modal_widthdraw.hidden = true;
+    modal_submit.hidden = true;
     modal.show()
   }
 }
@@ -1337,6 +1360,7 @@ function saving_data_all(dict,type){
     dataType: 'json',
     success:function(response){
       console.log(response);
+      window.location = '/ijmb/'
     },
     error:function(response){
       console.log("error with\n"+ response.message);
@@ -1346,19 +1370,19 @@ function saving_data_all(dict,type){
 
 function saving_data_file_all(dict,type){
   var form_data = new FormData();
-  var check = true
+  var check = 0
   var file = ''
   for(let item in dict){
     if(dict[item].type == 'application/pdf'){
       form_data.append(dict[item].name,dict[item].files[0]);
     }
     else{
-      check = false;
+      check = 1;
       file = dict[item].name;
       break;      
     }
   }
-    if(check == true){
+    if(check == 1){
       csrf_token = $('input[name="csrfmiddlewaretoken"]').val();
       form_data.append("csrfmiddlewaretoken",csrf_token);
       form_data.append('post_type',type);
@@ -1379,11 +1403,13 @@ function saving_data_file_all(dict,type){
       });
     }
     else{
+      if(Object.keys(dict).length > 0){
       alert.className = '';
       alert.classList.add("container-fluid","alert","alert-danger","alert-dismissible","fade","show");
       var text = document.getElementById('text-alert');
       text.innerHTML = file + " is not in pdf format";
       alert.hidden = false;
+      }
     }
 }
 
@@ -1403,11 +1429,14 @@ function saving_data(dict,type,action,tab){
       var text = document.getElementById('text-alert');
       text.innerHTML = response.message;
       alert.hidden = false;
-      if(action == 'prev' && tab != 0){
+      if(action == 'prev' && tab == 4){
+        $(tabs[tab-1]).tab('show');
+      }
+      else if(action == 'prev' && tab != 0){
         $(tabs[tab-1]).tab('show');
         hideprevnext();        
       }
-      if(action == 'next' && tab != 4){
+      else if(action == 'next' && tab != 4){
         $(tabs[tab+1]).tab('show');
         hideprevnext();
       }
@@ -1425,20 +1454,40 @@ function saving_data(dict,type,action,tab){
 
 function saving_data_file(dict,type,action,tab){
   var form_data = new FormData();
-  var check = true
+  var checker = true
+  var check = 0
   var file = ''
   for(let item in dict){
-    if(dict[item].type == 'application/pdf'){
-      form_data.append(dict[item].name,dict[item].files[0]);
+    if(dict[item].name == 'file_photo_passport' || dict[item].name == 'file_identification'){
+      if(dict[item].value != ''){
+        if(dict[item].files[0].type.includes('application/pdf') || dict[item].files[0].type.includes('image/')){
+          form_data.append(dict[item].name,dict[item].files[0]);
+          check = 1;
+        }
+        else{
+          checker = false;
+          check = 2;
+          file = dict[item].parentNode.firstElementChild.innerText;
+          break;      
+        }  
+      }
     }
     else{
-      check = false;
-      console.log(dict[item].type);            
-      file = dict[item].name;
-      break;      
+      if(dict[item].value != ''){
+        if(dict[item].files[0].type.includes('application/pdf') || dict[item].files[0].type.includes('image/')){
+          form_data.append(dict[item].name,dict[item].files[0]);
+          check = 1;
+        }
+        else{
+          checker = false;
+          check = 2;
+           file = dict[item].parentNode.firstElementChild.innerText;
+          break;      
+        }  
+      }      
     }
   }
-    if(check == true){
+    if(checker == true && check == 1){
       csrf_token = $('input[name="csrfmiddlewaretoken"]').val();
       form_data.append("csrfmiddlewaretoken",csrf_token);
       form_data.append('post_type',type);
@@ -1477,14 +1526,25 @@ function saving_data_file(dict,type,action,tab){
       });
     }
     else{
+      if(check == 2){
       alert.className = '';
       alert.classList.add("container-fluid","alert","alert-danger","alert-dismissible","fade","show");
       var text = document.getElementById('text-alert');
       text.innerHTML = file + " is not in pdf format";
       alert.hidden = false;
     }
+    else{
+      alert.className = '';
+      alert.classList.add("container-fluid","alert","alert-success","alert-dismissible","fade","show");
+      var text = document.getElementById('text-alert');
+      text.innerHTML = "No change was detected on any file";
+      alert.hidden = false;
+      if(action == 'prev' && tab == 4){
+        $(tabs[tab-1]).tab('show');
+      }
+    }
+  }
 }
-
 function tabstate(){
  if(post_type == 'personal'){
     $(tabs[1]).tab('show');
@@ -1507,24 +1567,30 @@ function hideprevnext(){
   if(tabs[0].ariaSelected == 'true' || post_type == 'program'){
     prev[0].hidden = true;
     prev[1].hidden = true;
+    withdraw[0].innerHTML = 'Widthdraw'
+    withdraw[1].innerHTML = 'Widthdraw'
   }
   else{
     prev[0].hidden = false;
     prev[1].hidden = false;
-    save[0].innerHTML = 'Save'
-    save[1].innerHTML = 'Save'
+    next[0].hidden = false;
+    next[1].hidden = false;
+    withdraw[0].innerHTML = 'Widthdraw'
+    withdraw[1].innerHTML = 'Widthdraw'
   }
   if(tabs[4].ariaSelected == 'true' || post_type == 'requirement'){
     next[0].hidden = true;
     next[1].hidden = true;
-    save[0].innerHTML = 'Submit'
-    save[1].innerHTML = 'Submit'
+    withdraw[0].innerHTML = 'Submit'
+    withdraw[1].innerHTML = 'Submit'
   }
   else{
+    prev[0].hidden = false;
+    prev[1].hidden = false;
     next[0].hidden = false;
     next[1].hidden = false;
-    save[0].innerHTML = 'Save'
-    save[1].innerHTML = 'Save'
+    withdraw[0].innerHTML = 'Widthdraw'
+    withdraw[1].innerHTML = 'Widthdraw'
   }
 }
 
@@ -1595,6 +1661,16 @@ function all_in(action){
 
 }
 
+function func_clear_list(){
+  for(i in clear_list){
+    if (clear_list[i] !== null){
+      clear_list[i].nextElementSibling.remove()
+      clear_list[i].remove();
+    }
+  }
+}
+
+
 prev[0].addEventListener('click',
   function(){
     all_in('prev');
@@ -1603,17 +1679,16 @@ prev[0].addEventListener('click',
 
 save[0].addEventListener('click',
   function(){
-    if (tabs[4].ariaSelected == 'true'){
-      func_all_validate();
-    }
-    else{
     all_in("");
-    }
   }
 );
 
 withdraw[0].addEventListener('click',
   function(){
+    if (tabs[4].ariaSelected == 'true'){      
+      func_all_validate();
+    }
+    else{
     modal_body.innerHTML = ''
     modal_title.innerHTML = ''
     modal_title.innerHTML = 'Widthdrawal Comfirmation'
@@ -1622,8 +1697,9 @@ withdraw[0].addEventListener('click',
     add.innerHTML = "Are you sure you want to widthdraw this application?"
     modal_body.append(add)
     modal_widthdraw.hidden = false;
+    modal_submit.hidden = true;
     modal.show()
-//    saving_data_all({'status':'Widthdraw'},'widthdraw');
+    }
   }
 );
 
@@ -1633,7 +1709,6 @@ next[0].addEventListener('click',
   }
 );
 
-
 prev[1].addEventListener('click',
   function(){
     all_in('prev');
@@ -1642,17 +1717,16 @@ prev[1].addEventListener('click',
 
 save[1].addEventListener('click',
   function(){
-    if (tabs[4].ariaSelected == 'true'){
-      func_all_validate();
-    }
-    else{
     all_in("");
-    }
   }
 );
 
 withdraw[1].addEventListener('click',
   function(){
+    if (tabs[4].ariaSelected == 'true'){
+      func_all_validate();
+    }
+    else{
     modal_body.innerHTML = ''
     modal_title.innerHTML = ''
     modal_title.innerHTML = 'Widthdrawal Comfirmation'
@@ -1661,7 +1735,9 @@ withdraw[1].addEventListener('click',
     add.innerHTML = "Are you sure you want to widthdraw this application?"
     modal_body.append(add)
     modal_widthdraw.hidden = false;
+    modal_submit.hidden = true;
     modal.show()
+    }
   }
 );
 
@@ -1671,9 +1747,12 @@ next[1].addEventListener('click',
   }
 );
 
+modal_submit.addEventListener('click',function(){
+  saving_data_all({'status': 2},'submit');
+});
+
 modal_widthdraw.addEventListener('click',function(){
   saving_data_all({'status': 5},'widthdraw');
-  window.location = '/ijmb/'
 });
 
 tabs[0].addEventListener('click',
@@ -1682,8 +1761,8 @@ tabs[0].addEventListener('click',
     next[0].hidden = false;
     prev[1].hidden = true;
     next[1].hidden = false;
-    save[0].innerHTML = 'Save'
-    save[1].innerHTML = 'Save'
+    withdraw[0].innerHTML = 'Widthdraw'
+    withdraw[1].innerHTML = 'Widthdraw'
   }
 );
 
@@ -1693,8 +1772,8 @@ tabs[1].addEventListener('click',
     next[0].hidden = false;
     prev[1].hidden = false;
     next[1].hidden = false;
-    save[0].innerHTML = 'Save'
-    save[1].innerHTML = 'Save'
+    withdraw[0].innerHTML = 'Widthdraw'
+    withdraw[1].innerHTML = 'Widthdraw'
   }
 );
 
@@ -1704,8 +1783,8 @@ tabs[2].addEventListener('click',
     next[0].hidden = false;
     prev[1].hidden = false;
     next[1].hidden = false;
-    save[0].innerHTML = 'Save'
-    save[1].innerHTML = 'Save'
+    withdraw[0].innerHTML = 'Widthdraw'
+    withdraw[1].innerHTML = 'Widthdraw'
   }
 );
 
@@ -1715,8 +1794,8 @@ tabs[3].addEventListener('click',
     next[0].hidden = false;
     prev[1].hidden = false;
     next[1].hidden = false;
-    save[0].innerHTML = 'Save'
-    save[1].innerHTML = 'Save'
+    withdraw[0].innerHTML = 'Widthdraw'
+    withdraw[1].innerHTML = 'Widthdraw'
   }
 );
 
@@ -1726,8 +1805,8 @@ tabs[4].addEventListener('click',
     next[0].hidden = true;
     prev[1].hidden = false;
     next[1].hidden = true;
-    save[0].innerHTML = 'Submit'
-    save[1].innerHTML = 'Submit'
+    withdraw[0].innerHTML = 'Submit'
+    withdraw[1].innerHTML = 'Submit'
   }
 );
 

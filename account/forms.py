@@ -20,10 +20,12 @@ class EmailForm(forms.Form):
     code = forms.CharField(max_length=8, required=True, help_text='Enter Email Address')
 
 class LoginForm(ModelForm):
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Enter your email address here'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Enter your passport here'}))
     
     class Meta:
         model = User
         fields = ('email','password')
-
+    
 class VerifyForm(forms.Form):
     code = forms.CharField(max_length=8, required=True, help_text='Enter code')

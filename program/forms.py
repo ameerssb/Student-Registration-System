@@ -118,7 +118,6 @@ class RequiremtForm(ModelForm):
         for i in self.fields:
             if i in required:
                 self.fields[i].required = True
-                self.fields[i].hidden = True                
             else:
                 self.fields[i].required = False
             self.fields[i].widget.attrs['class'] = 'form-control'

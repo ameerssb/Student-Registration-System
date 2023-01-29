@@ -158,10 +158,10 @@ class Register(View):
             else:
                 data = {'message':'not valid',}
                 return JsonResponse(data,status=500)
-
-        if request.POST['post_type'] == 'all':
-            form  = RequiremtForm(request.POST, instance=data.first())
+        if request.POST['post_type'] == 'submit':
+            form  = DoneForm(request.POST, instance=data.first())
             if form.is_valid():
+                print('nan')
                 form.save()
                 data = {'message':'Successful',}
                 return JsonResponse(data,status=200)
@@ -170,6 +170,7 @@ class Register(View):
                 return JsonResponse(data,status=500)            
 
 def submit_to(form,mes):
+    print(form.errors)
     if form.is_valid():
         data = form.save(commit=False)
         data.post_type = mes.lower()

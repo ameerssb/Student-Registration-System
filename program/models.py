@@ -3,6 +3,11 @@ from account.models import User,upload_location
 from datetime import datetime
 import re
 # Create your models here.
+def upload_location(instance, filename):
+	s = "%s/%s" %(instance.user.id, filename)
+	return s
+
+
 class Session(models.Model):
     session = models.CharField(max_length=15,default="2022/2023")
     created = models.DateTimeField(auto_now_add=True,auto_created=True)
@@ -179,15 +184,15 @@ class Olevel(models.Model):
     subject7 = models.ForeignKey(Subject, on_delete=models.DO_NOTHING,blank=True, null = True, related_name='exam_subject7')
     subject8 = models.ForeignKey(Subject, on_delete=models.DO_NOTHING,blank=True, null = True, related_name='exam_subject8')
     subject9 = models.ForeignKey(Subject, on_delete=models.DO_NOTHING,blank=True, null = True, related_name='exam_subject9')
-    grade1 = models.ForeignKey(Grade, on_delete=models.DO_NOTHING,blank=True, null = True, related_name='exam_grade1')
-    grade2 = models.ForeignKey(Grade, on_delete=models.DO_NOTHING,blank=True, null = True, related_name='exam_grade2')
-    grade3 = models.ForeignKey(Grade, on_delete=models.DO_NOTHING,blank=True, null = True, related_name='exam_grade3')
-    grade4 = models.ForeignKey(Grade, on_delete=models.DO_NOTHING,blank=True, null = True, related_name='exam_grade4')
-    grade5 = models.ForeignKey(Grade, on_delete=models.DO_NOTHING,blank=True, null = True, related_name='exam_grade5')
-    grade6 = models.ForeignKey(Grade, on_delete=models.DO_NOTHING,blank=True, null = True, related_name='exam_grade6')
-    grade7 = models.ForeignKey(Grade, on_delete=models.DO_NOTHING,blank=True, null = True, related_name='exam_grade7')
-    grade8 = models.ForeignKey(Grade, on_delete=models.DO_NOTHING,blank=True, null = True, related_name='exam_grade8')
-    grade9 = models.ForeignKey(Grade, on_delete=models.DO_NOTHING,blank=True, null = True, related_name='exam_grade9')
+    grade1 = models.ForeignKey(Grade, on_delete=models.DO_NOTHING,blank=True, null = True, related_name='exam_grade1', default=10)
+    grade2 = models.ForeignKey(Grade, on_delete=models.DO_NOTHING,blank=True, null = True, related_name='exam_grade2', default=10)
+    grade3 = models.ForeignKey(Grade, on_delete=models.DO_NOTHING,blank=True, null = True, related_name='exam_grade3', default=10)
+    grade4 = models.ForeignKey(Grade, on_delete=models.DO_NOTHING,blank=True, null = True, related_name='exam_grade4', default=10)
+    grade5 = models.ForeignKey(Grade, on_delete=models.DO_NOTHING,blank=True, null = True, related_name='exam_grade5', default=10)
+    grade6 = models.ForeignKey(Grade, on_delete=models.DO_NOTHING,blank=True, null = True, related_name='exam_grade6', default=10)
+    grade7 = models.ForeignKey(Grade, on_delete=models.DO_NOTHING,blank=True, null = True, related_name='exam_grade7', default=10)
+    grade8 = models.ForeignKey(Grade, on_delete=models.DO_NOTHING,blank=True, null = True, related_name='exam_grade8', default=10)
+    grade9 = models.ForeignKey(Grade, on_delete=models.DO_NOTHING,blank=True, null = True, related_name='exam_grade9', default=10)
 
     def __str__(self):
         return str(self.o_level_status) 
