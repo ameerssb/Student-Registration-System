@@ -1,0 +1,27 @@
+
+{% load static %}
+    <!-- Custom styles for this template -->
+  </head>
+  <body>
+
+{% include 'header.html' %}
+
+<div class="container-fluid pt-5">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-5" style="padding-top: 65px !important;">
+        <h3 class="ps-3">Actions</h3>
+        <ul class="nav flex-column fs-5 pt-4">
+          <li class="nav-item">
+            <a class="nav-link text-success" href="{% url 'Dashboard' %}">
+              Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-success" href="{% url 'New' %}">
+              New Paper
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>

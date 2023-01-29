@@ -1,0 +1,143 @@
+<div class="tab-pane fade" id="nav-personal" role="tabpanel" aria-labelledby="nav-personal-tab">
+  <div class="text-end fs-6 fw-bold"><span>* = required</span></div>
+  <div class="text-center fs-4 fw-bold"><span>Online Application for 2022-23 Intake</span></div>
+    <form action="" method="post">
+      {% csrf_token %}  
+      <div>
+        <div class="pb-4">
+          <div class="card py-1 bg-light text-dark">
+            <span class="px-3 fs-6 fw-bold">Personal Information</span>
+          </div>
+          <div class="card p-3">
+            <div class="row ps-3 pb-4">
+              <div class="col-lg-2">
+                <label class="pb-2 fw-bold" for="">* First Name</label>
+                {{personal.first_name}}
+                <p class="text-danger" id="personal_error"></p>
+              </div>
+              <div class="col-lg-2">
+                <label class="pb-2 fw-bold" for="">* Last Name</label>
+                {{personal.last_name}}
+                <p class="text-danger" id="personal_error"></p>
+              </div>
+              <div class="col-lg-2">
+                <label class="pb-2 fw-bold" for="">Other Name</label>
+                {{personal.other_name}}
+                <p class="text-danger" id="personal_error"></p>
+              </div>
+              <div class="col-lg-2">
+                <label class="pb-2 fw-bold" for="">* Date of Birth</label>
+                {{personal.dob}}
+                <p class="text-danger" id="personal_error"></p>
+              </div>
+              <div class="col-lg-2">
+                <label class="pb-2 fw-bold" for="">* State of Origin</label>
+                {{personal.state_of_origin}}
+                <p class="text-danger" id="personal_error"></p>
+              </div>                  
+            </div>
+            <div class="row ps-3 pb-4">
+              <div class="col-lg-2">
+                <label class="pb-2 fw-bold" for="">* Gender</label>
+                {{personal.gender}}                    
+                <p class="text-danger" id="personal_error"></p>
+              </div>
+              <div class="col-lg-2">
+                <label class="pb-2 fw-bold" for="">* Marital Status</label>
+                {{personal.marital_status}}
+                <p class="text-danger" id="personal_error"></p>
+              </div>
+              <div class="col-lg-2">
+                <label class="pb-2 fw-bold" for="">* Disability</label>
+                {{personal.disability}}
+                <p class="text-danger" id="personal_error"></p>
+              </div>
+              <div class="col-lg-2" id="col_disability_type" hidden>
+                <label class="pb-2 fw-bold" for="">* Disability Type</label>
+                {{personal.disability_type}}
+                <p class="text-danger" id="personal_error"></p>
+              </div>                  
+            </div>
+            <div class="row ps-3 pb-4">
+              <div class="col-lg-2 pb-3">
+                <label class="pb-2 fw-bold" for="" aria-label="ijmb">Previous IJMB ID No.</label>
+                {{personal.previous_ijmb_number}}
+                <p class="text-danger" id="personal_error"></p>
+              </div>
+              <span>If you were an IJMB student who is repeating, please enter your previous ID number</span>                
+            </div>
+          </div>
+        </div>
+        <div class="pb-4">
+          <div class="card py-1 bg-light text-dark">
+            <span class="px-3 fs-6 fw-bold">Identification Details</span>
+          </div>
+          <div class="card p-3">
+            <div class="row ps-3 pb-4">
+              <div class="col-lg-2" id="id_identification_type">
+                <label class="pb-2 fw-bold" for="">* ID Type</label>
+                {{personal.id_type}}
+                <p class="text-danger" id="personal_error"></p>
+              </div>
+              <div class="col-lg-2">
+                <label class="pb-2 fw-bold" for="">* ID Number</label>
+                {{personal.id_number}}
+                <p class="text-danger" id="personal_error"></p>
+              </div>
+              <div class="col-lg-2" id="col_id_date_issued" hidden>
+                <label class="pb-2 fw-bold" for="">* Date Issued</label>
+                {{personal.id_issued}}
+                <p class="text-danger" id="personal_error"></p>
+              </div>
+              <div class="col-lg-2" id="col_id_date_expiry" hidden>
+                <label class="pb-2 fw-bold" for="">* Date Expiry</label>
+                {{personal.id_expiry}}
+                <p class="text-danger" id="personal_error"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pb-4">
+          <div class="card py-1 bg-light text-dark">
+            <span class="px-3 fs-6 fw-bold">Contact Information - Email, Mobile and Address</span>
+          </div>
+          <div class="card p-3">
+            <div class="row ps-3 pb-4">
+              <div class="col-3">
+                <label class="pb-2 fw-bold" for="">* Email Address</label>
+                {{personal.email}}
+                <p class="text-danger" id="personal_error"></p>
+              </div>
+              <div class="col-lg-2">      
+                <label class="pb-2 fw-bold" for="">* Phone Number</label>
+                {{personal.phone}}
+                <p class="text-danger" id="personal_error"></p>
+              </div>
+            </div>
+            <div class="row ps-3 pb-4">
+              <div class="col-4">
+                <label class="pb-2 fw-bold" for="">* Address</label>
+                {{personal.address}}
+                <p class="text-danger" id="personal_error"></p>
+              </div>
+              <div class="col-lg-2">
+                <label class="pb-2 fw-bold" for="">* Postal Code</label>
+                {{personal.postal}}
+                <p class="text-danger" id="personal_error"></p>
+              </div>
+              <div class="col-lg-2">
+                <label class="pb-2 fw-bold" for="">* State</label>
+                {{personal.state}}
+                <p class="text-danger" id="personal_error"></p>
+              </div>
+              <div class="col-lg-2 ps-3 pb-4">
+                <label class="pb-2 fw-bold" for="">* LGA</label>
+                {{personal.lga}}
+                <p class="text-danger" id="personal_error"></p>
+              </div>
+            </div>              
+          </div>
+        </div>
+      </div>
+    </form>
+</div>

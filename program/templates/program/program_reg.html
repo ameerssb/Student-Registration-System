@@ -1,0 +1,96 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    
+    {% include 'header.html' %}
+
+<main class="container-fluid px-4 pt-4 mb-3">
+  <div class="modal" id="AddModal" tabindex="-1" aria-labelledby="AddModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-title"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" id="modal-widthdraw" hidden>Widthdraw</button>
+        </div>
+      </div>
+    </div>
+  </div>    
+  <div class="d-flex justify-content-center">
+    <div role="alert" id="alert" hidden>
+      <span id="text-alert"></span>
+      <button type="button" id="button-alert" class="btn-close" aria-label="Close"></button>
+    </div>  
+  </div>
+    <div class="row pb-4">
+      <div class="col-4">
+        <div class="text-start">
+              <button id="prev" class="btn btn-outline-secondary border-white">Previous</button>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="text-center">
+            <div class="d-flex justify-content-around">
+              <button id="save" class="btn btn-outline-secondary border-white">Save</button>
+              <button id="withdraw" class="btn btn-outline-secondary border-white">Withdraw</button>
+            </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="text-end">
+              <button id="next" class="btn btn-outline-secondary border-white">Next</button>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid border">
+      <nav class="bg-light">
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a class="nav-link active" id="nav-program-tab" data-bs-toggle="tab" data-bs-target="#nav-program" type="button" role="tab" aria-controls="nav-program" aria-selected="true">Program</a>
+          <a class="nav-link" id="nav-personal-tab" data-bs-toggle="tab" data-bs-target="#nav-personal" type="button" role="tab" aria-controls="nav-personal" aria-selected="false">Personal Details</a>
+          <a class="nav-link" id="nav-education-tab" data-bs-toggle="tab" data-bs-target="#nav-education" type="button" role="tab" aria-controls="nav-education" aria-selected="false">Educational Information</a>
+          <a class="nav-link" id="nav-nextofkin-tab" data-bs-toggle="tab" data-bs-target="#nav-nextofkin" type="button" role="tab" aria-controls="nav-nextofkin" aria-selected="false">Next-of-kin Information</a>
+          <a class="nav-link" id="nav-requirement-tab" data-bs-toggle="tab" data-bs-target="#nav-requirement" type="button" role="tab" aria-controls="nav-requirement" aria-selected="false">Requirements</a>                
+        </div>
+      </nav>
+      <div class="tab-content px-3" id="nav-tabContent">
+        {% include 'includes/program.html' %}
+        {% include 'includes/personal.html' %}
+        {% include 'includes/education.html' %}
+        {% include 'includes/nextofkin.html' %}
+        {% include 'includes/requirement.html' %}                        
+      </div>          
+    
+    </div>    
+    <div class="row pb-4">
+      <div class="col-4">
+        <div class="text-start">
+              <button id="prev" class="btn btn-outline-secondary border-white">Previous</button>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="text-center">
+            <div class="d-flex justify-content-around">
+              <button id="save" class="btn btn-outline-secondary border-white">Save</button>
+              <button id="withdraw" class="btn btn-outline-secondary border-white">Withdraw</button>
+            </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="text-end">
+              <button id="next" class="btn btn-outline-secondary border-white">Next</button>
+        </div>
+      </div>
+    </div>
+</main>
+
+    {% include 'footer.html' %}
+{% endblock %}

@@ -1,0 +1,71 @@
+<div class="tab-pane fade" id="nav-nextofkin" role="tabpanel" aria-labelledby="nav-nextofkin-tab">
+  <div class="text-end fs-6 fw-bold"><span>* = required</span></div>
+  <div class="text-center fs-4 fw-bold"><span>Online Application for 2022-23 Intake</span></div>
+    <form action="" method="post">
+      {% csrf_token %}  
+      <div>
+        <div class="pb-4">
+          <div class="card py-1 bg-light text-dark">
+            <span class="px-3 fs-6 fw-bold">Next-of-kin Details</span>
+          </div>
+          <div class="card p-3">
+            <div class="row ps-3 pb-4">
+              <div class="col-lg-4">
+                <label class="pb-2 fw-bold" for="">* Full name</label>
+                {{nextofkin.next_of_kin_name}}
+                <p class="text-danger" id="nextofkin_error"></p>
+              </div>
+              <div class="col-lg-3">      
+                <label class="pb-2 fw-bold" for="">* Email Address</label>
+                {{nextofkin.next_of_kin_email}}
+                <p class="text-danger" id="nextofkin_error"></p>
+              </div>
+              <div class="col-lg-2">      
+                <label class="pb-2 fw-bold" for="">* Phone Number</label>
+                {{nextofkin.next_of_kin_phone}}
+                <p class="text-danger" id="nextofkin_error"></p>
+              </div>
+            </div>
+            <div class="row ps-3 pb-4">
+              <div class="col-lg-4">      
+                <label class="pb-2 fw-bold" for="">* Address</label>
+                {{nextofkin.next_of_kin_address}}
+                <p class="text-danger" id="nextofkin_error"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pb-4">
+          <div class="card py-1 bg-light text-dark">
+            <span class="px-3 fs-6 fw-bold">Select Relationship Type</span>
+          </div>
+          <div class="card p-3">
+            <div class="col-lg-2 ps-3 pb-4">
+              <label class="pb-2 fw-bold" for="">* Relationship Type</label>
+              {{nextofkin.next_of_kin_relationship}}
+              <p class="text-danger" id="nextofkin_error"></p>
+            </div>
+          </div>
+        </div>
+        <div class="pb-4">
+          <div class="card py-1 bg-light text-dark">
+            <span class="px-3 fs-6 fw-bold">Occupation Details</span>
+          </div>
+          <div class="card p-3">
+            <div class="row ps-3 pb-4">
+              <div class="col-lg-2">
+                <label class="pb-2 fw-bold" for="">* Occupation</label>
+                {{nextofkin.next_of_kin_occupation}}
+                <p class="text-danger" id="nextofkin_error"></p>
+              </div>
+              <div class="col-lg-4">      
+                <label class="pb-2 fw-bold" for="">* Address</label>
+                {{nextofkin.next_of_kin_occupation_address}}
+                <p class="text-danger" id="nextofkin_error"></p>
+              </div>
+            </div>              
+          </div>
+        </div>
+      </div>
+    </form>
+</div>

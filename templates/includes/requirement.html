@@ -1,0 +1,75 @@
+<div class="tab-pane fade" id="nav-requirement" role="tabpanel" aria-labelledby="nav-requirement-tab">
+  <div class="text-end fs-6 fw-bold"><span>* = required</span></div>
+  <div class="text-center fs-4 fw-bold"><span>Online Application for 2022-23 Intake</span></div>
+    <form action="" method="post" enctype="multipart/form-data">
+      {% csrf_token %}  
+      <div>
+        <div class="pb-4">
+          <div class="card py-1 bg-light text-dark">
+            <span class="px-3 fs-6 fw-bold">Requirements</span>
+          </div>
+          <div class="card p-3">
+            <div class="col-lg-2 ps-3 pb-4">
+              <!-- <label class="pb-2 fw-bold" for="">* Program Type</label> -->
+            </div>
+          </div>
+        </div>
+        <div class="pb-4">
+          <div class="card py-1 bg-light text-dark">
+            <span class="px-3 fs-6 fw-bold">Documents <span class="text-danger">(PDF Format Max. 2MB)</span></span>
+          </div>
+          <div class="card p-3">
+            <div class="row ps-3 pb-5">
+              <div class="col-lg-4">
+                <label class="pb-2 fw-bold" for="">* Photo Passport <span class="text-danger">(white background)</span></label>
+                {{requirement.file_photo_passport}}
+                <p class="text-danger" id="requirement_error"></p>
+              </div>
+              <div class="col-lg-4">
+                <label class="pb-2 fw-bold" for="">* Identification <span class="text-danger">(National ID/Passport)</span></label>
+                {{requirement.file_identification}}
+                <p class="text-danger" id="requirement_error"></p>
+              </div>              
+            </div>
+            <div class="row ps-3 pb-5">
+              <div class="col-lg-4">
+                <label class="pb-2 fw-bold" for="">First O-level Certificate</label>
+                {{requirement.file_first_certificate}}
+                <p class="text-danger" id="requirement_error"></p>
+              </div>
+              <div class="col-lg-4">
+                <label class="pb-2 fw-bold" for="">First O-level School Testimonial</label>
+                {{requirement.file_first_testimonial}}
+                <p class="text-danger" id="requirement_error"></p>
+              </div>              
+            </div>              
+            <div class="row ps-3 pb-5">
+              <p class="fw-bold">if two sitting exam was selected</p>
+              <div class="col-lg-4">
+                <label class="pb-2 fw-bold" for="">Second O-level Certificate</label>
+                {{requirement.file_second_certificate}}
+                <p class="text-danger" id="requirement_error"></p>
+              </div>
+              <div class="col-lg-4">
+                <label class="pb-2 fw-bold" for="">Second O-level School Testimonial</label>
+                {{requirement.file_second_testimonial}}
+                <p class="text-danger" id="requirement_error"></p>
+              </div>              
+            </div>              
+            <div class="row ps-3 pb-4">
+              <div class="col-lg-4">
+                <label class="pb-2 fw-bold" for="">Exam Slip <span class="text-danger">(Awaiting Result)</span></label>
+                {{requirement.file_awaiting_exam_slip}}
+                <p class="text-danger" id="requirement_error"></p>
+              </div>
+              <div class="col-lg-4">
+                <label class="pb-2 fw-bold" for="">Exam Scratch Card</label>
+                {{requirement.file_scratch_card}}
+                <p class="text-danger" id="requirement_error"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+</div>

@@ -1,0 +1,38 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <title>Yumsuk Journals</title>
+    
+    <link rel="shortcut icon" href="{% static 'assets/brand/logo.jpg' %}" type="image/x-icon">
+    <!-- Bootstrap core CSS -->
+<link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <style>
+    body {
+  padding-top: 4.5rem !important;
+    }
+  </style>
+
+{% block content %}
+    
+    {% endblock %}
+    <script src="{% static 'assets/js/main.js' %}""></script>    
+    <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+    <script type="text/javascript">
+      var st_o = "{{personal.state_of_origin.value}}";
+      var st = "{{personal.state.value}}";
+      var lg = "{{personal.lga.value}}";
+      var post_type = "{{personal.post_type.value}}";
+    </script>    
+    <script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/program_reg_script.js' %}"></script>  
+    <script>
+    </script>   
+  </body>
+</html>

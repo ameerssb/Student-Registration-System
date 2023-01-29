@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+
+{% load static %}
+{% block content %}
+
+
+{% include 'header.html' %}
+    
+<main class="container pb-5" style="padding-top: 150px !important;">
+
+    {% if messages %}
+    <div class="messages text-center text-success pb-2">
+        {% for message in messages %}
+        <span {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{message}}</span>
+        {% endfor %}
+    </div> 
+    {% endif %}                
+
+</main>
+
+{% include 'footer.html' %}
+{% endblock %}

@@ -1,0 +1,82 @@
+<div class="tab-pane fade show active" id="nav-program" role="tabpanel" aria-labelledby="nav-program-tab">
+  <div class="text-end fs-6 fw-bold"><span>* = required</span></div>
+  <div class="text-center fs-4 fw-bold"><span>Online Application for 2022-23 Intake</span></div>
+    <form action="" method="post">
+      {% csrf_token %}  
+      <div>
+      <div class="pb-4">
+        <div class="card py-1 bg-light text-dark">
+          <span class="px-3 fs-6 fw-bold">Select Program Session</span>
+        </div>
+        <div class="card p-3">
+          <div class="col-lg-2 ps-3 pb-4">
+            <label class="pb-2 fw-bold" for="">* Program Session</label>
+            <p class="text-danger" id="program_error"></p>
+            {{program.session}}
+          </div>
+        </div>
+      </div>          
+      <div class="pb-4">
+        <div class="card py-1 bg-light text-dark">
+          <span class="px-3 fs-6 fw-bold">Select Program Type</span>
+        </div>
+        <div class="card p-3">
+          <div class="col-lg-2 ps-3 pb-4">
+            <label class="pb-2 fw-bold" for="">* Program Type</label>
+            {{program.p_type}}
+            <p class="text-danger" id="program_error"></p>
+          </div>
+        </div>
+      </div>
+      <div class="pb-4">
+        <div class="card py-1 bg-light text-dark">
+          <span class="px-3 fs-6 fw-bold">Select Program Faculty</span>
+        </div>
+        <div class="card p-3">
+          <div class="col-lg-2 ps-3 pb-4">
+            <label class="pb-2 fw-bold" for="">* Program Faculty</label>
+            {{program.faculty}}
+            <p class="text-danger" id="program_error"></p>
+          </div>
+        </div>
+      </div>
+      <div class="pb-4">
+        <div class="card py-1 bg-light text-dark">
+          <span class="px-3 fs-6 fw-bold">Select Course</span>
+        </div>
+        <div class="card p-3">
+          <div class="col-lg-2 ps-3 pb-4">
+            <label class="pb-2 fw-bold" for="">* Course</label>
+            {{program.course}}
+            <p class="text-danger" id="program_error"></p>
+          </div>
+        </div>
+      </div>
+      <div class="pb-4">
+        <div class="card py-1 bg-light text-dark">
+          <span class="px-3 fs-6 fw-bold">Select Subjects</span>
+        </div>
+        <div class="card p-3">
+          <span class="pb-4 fw-bold" for="">* Subjects</span>
+          <div class="row ps-3 pb-5">
+            <div class="col-lg-2">
+              {{program.p_subject1}}
+              <p class="text-danger" id="program_error"></p>
+            </div>
+            <div class="col-lg-2">
+              {{program.p_subject2}}
+              <p class="text-danger" id="program_error"></p>
+            </div>
+            <div class="col-lg-2">
+              {{program.p_subject3}}
+              <p class="text-danger" id="program_error"></p>
+            </div>
+          </div>
+          <div>
+            <span>For more information on IJMB Programs Subject visit <a href="" target="_blank" >here</a></span>
+          </div>
+        </div>
+      </div>
+      </div>
+    </form>
+</div>

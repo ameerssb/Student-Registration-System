@@ -1,0 +1,62 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    
+    {% include 'header.html' %}
+
+    <main class="container pt-5">
+        <div class="pb-2 mb-3">
+            <div class="container" style="width: 600px !important;">
+                <div class="card py-2 px-5 bg-success">
+                <h5 class="text-white text-center">Register here...</h5>
+                </div>
+                <div class="card bg-light">
+                <form class="text-start p-5" action="" method="post">
+                    {% csrf_token %}
+                    <div class="container">
+                        {% if messages %}
+                        <div class="messages text-center text-success pb-2">
+                            {% for message in messages %}
+                            <span {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{message}}</span>
+                            {% endfor %}
+                        </div> 
+                        {% endif %}
+                        <div class="row">
+                            <div class="col-auto">
+                                {{form|crispy}}
+                            </div>
+                            <div class="card-body text-center d-flex justify-content-center p-3">
+                                <select name="country" class="form-select countries m-1" id="countryId">
+                                    <option value="">Select Country</option>
+                                </select>
+                                <select name="state" class="form-select states m-1" id="stateId">
+                                    <option value="">Select State</option>                                    
+                                </select>
+                                <select name="city" class="form-select cities m-1" id="cityId">
+                                    <option value="">Select City</option>                                    
+                                </select>
+                            </div>
+                            
+                        </div>                                        
+                        <div class="text-center mb-2">
+                            <button type="submit" class="btn btn-success me-4">Submit</button>
+                            <button type="reset" class="btn btn-outline-success">Clear</button>
+                        </div>
+                        <div class="text center d-flex justify-content-center">
+                            <span>Already have an account? <a href="{% url 'Login' %}" class="text-decoration-none">Sign-in</a></span>
+                        </div>
+                    </div>  
+                </form>
+                </div>
+            </div>
+        </div>    
+    </main>
+
+    {% include 'footer.html' %}    
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//geodata.solutions/includes/countrystatecity.js"></script>
+{% endblock %}

@@ -1,0 +1,287 @@
+<div class="tab-pane fade" id="nav-education" role="tabpanel" aria-labelledby="nav-education-tab">
+    <div class="text-end fs-6 fw-bold"><span>* = required</span></div>
+    <div class="text-center fs-4 fw-bold"><span>Online Application for 2022-23 Intake</span></div>
+    <form action="" method="post">
+      {% csrf_token %}  
+      <div>
+      <div class="pb-4">
+        <div class="card py-1 bg-light text-dark">
+          <span class="px-3 fs-6 fw-bold">O'level Details</span>
+        </div>
+        <div class="card p-3">
+          <div class="col-lg-2 ps-3 pb-4">
+            {% if not education2.o_level_status.value %}
+            <label class="pb-2 fw-bold" for="">* O'level Status</label>
+            {{ education2.o_level_status }}
+            <p class="text-danger" id="education_1_error"></p>
+            {% else %}
+            <label class="pb-2 fw-bold" for="">* O'level Status</label>
+            {{ education1.o_level_status }}
+            <p class="text-danger" id="education_1_error"></p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="pb-4" id="first_sitting" hidden>
+        <div class="card py-1 bg-light text-dark">
+          <span class="px-3 fs-6 fw-bold" id="exam_sitting_label1"></span>
+        </div>
+        <div class="card p-3">
+          <div class="row ps-3 pb-4">
+            <div class="col-lg-2">
+              <label class="pb-2 fw-bold" for="">* Examination Type</label>
+              {{education1.examination_type}}
+              <p class="text-danger" id="education_1_error"></p>
+            </div>  
+            <div class="col-lg-3">
+              <label class="pb-2 fw-bold" for="">* Examination School/Center</label>
+              {{education1.examination_center}}
+              <p class="text-danger" id="education_1_error"></p>
+            </div>
+            <div class="col-lg-2">
+              <label class="pb-2 fw-bold" for="">* Examination Number</label>
+              {{education1.examination_number}}
+              <p class="text-danger" id="education_1_error"></p>
+            </div>
+            <div class="col-lg-2">
+              <label class="pb-2 fw-bold" for="">* Examination Year</label>
+              {{education1.examination_year}}
+              <p class="text-danger" id="education_1_error"></p>
+            </div>
+          </div>
+          <div class="row ps-3 pb-4">
+            <div class="col-lg-1 d-flex justify-content-center align-items-end"><h4>1.</h4></div>
+            <div class="col-lg-2">
+              <label class="pb-2 fw-bold" for="">* Subjects</label>
+              {{education1.subject1}}
+              <p class="text-danger" id="education_1_error"></p>
+            </div>
+            <div class="col-lg-1">
+              <label class="pb-2 fw-bold" for="">* Grades</label>
+              {{education1.grade1}}
+              <p class="text-danger" id="education_1_error"></p>
+            </div>
+          </div>
+          <div class="row ps-3 pb-4">
+            <div class="col-lg-1 d-flex justify-content-center align-items-end"><h4>2.</h4></div>
+            <div class="col-lg-2">
+              {{education1.subject2}}
+              <p class="text-danger" id="education_1_error"></p>
+            </div>
+            <div class="col-lg-1">
+              {{education1.grade2}}
+              <p class="text-danger" id="education_1_error"></p>
+            </div>
+          </div>
+          <div class="row ps-3 pb-4">
+            <div class="col-lg-1 d-flex justify-content-center align-items-end"><h4>3.</h4></div>
+            <div class="col-lg-2">
+              {{education1.subject3}}
+              <p class="text-danger" id="education_1_error"></p>
+            </div>
+            <div class="col-lg-1">
+              {{education1.grade3}}
+              <p class="text-danger" id="education_1_error"></p>
+            </div>
+          </div>
+          <div class="row ps-3 pb-4">
+            <div class="col-lg-1 d-flex justify-content-center align-items-end"><h4>4.</h4></div>
+            <div class="col-lg-2">
+              {{education1.subject4}}
+              <p class="text-danger" id="education_1_error"></p>
+            </div>
+            <div class="col-lg-1">
+              {{education1.grade4}}
+              <p class="text-danger" id="education_1_error"></p>
+            </div>
+          </div>
+          <div class="row ps-3 pb-4">
+            <div class="col-lg-1 d-flex justify-content-center align-items-end"><h4>5.</h4></div>
+            <div class="col-lg-2">
+              {{education1.subject5}}
+              <p class="text-danger" id="education_1_error"></p>
+            </div>
+            <div class="col-lg-1">
+              {{education1.grade5}}
+              <p class="text-danger" id="education_1_error"></p>
+            </div>
+          </div>
+          <div class="row ps-3 pb-4">
+            <div class="col-lg-1 d-flex justify-content-center align-items-end"><h4>6.</h4></div>
+            <div class="col-lg-2">
+              {{education1.subject6}}
+              <p class="text-danger" id="education_1_error"></p>
+            </div>
+            <div class="col-lg-1">
+              {{education1.grade6}}
+              <p class="text-danger" id="education_1_error"></p>
+            </div>
+          </div>
+          <div class="row ps-3 pb-4">
+            <div class="col-lg-1 d-flex justify-content-center align-items-end"><h4>7.</h4></div>
+            <div class="col-lg-2">
+              {{education1.subject7}}
+              <p class="text-danger" id="education_1_error"></p>
+            </div>
+            <div class="col-lg-1">
+              {{education1.grade7}}
+              <p class="text-danger" id="education_1_error"></p>
+            </div>
+          </div>
+          <div class="row ps-3 pb-4">
+            <div class="col-lg-1 d-flex justify-content-center align-items-end"><h4>8.</h4></div>
+            <div class="col-lg-2">
+              {{education1.subject8}}
+              <p class="text-danger" id="education_1_error"></p>
+            </div>
+            <div class="col-lg-1">
+              {{education1.grade8}}
+              <p class="text-danger" id="education_1_error"></p>
+            </div>
+          </div>
+          <div class="row ps-3 pb-4">
+            <div class="col-lg-1 d-flex justify-content-center align-items-end"><h4>9.</h4></div>
+            <div class="col-lg-2">
+              {{education1.subject9}}
+              <p class="text-danger" id="education_1_error"></p>
+            </div>
+            <div class="col-lg-1">
+              {{education1.grade9}}
+              <p class="text-danger" id="education_1_error"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pb-4" id="second_sitting" hidden>
+        <div class="card py-1 bg-light text-dark">
+          <span class="px-3 fs-6 fw-bold" id="exam_sitting_label2"></span>
+        </div>
+        <div class="card p-3">
+          <div class="row ps-3 pb-4">
+            <div class="col-lg-2">
+              <label class="pb-2 fw-bold" for="">* Examination Type</label>
+              {{education2.examination_type}}
+              <p class="text-danger" id="education_2_error"></p>
+            </div>  
+            <div class="col-lg-3">
+              <label class="pb-2 fw-bold" for="">* Examination School/Center</label>
+              {{education2.examination_center}}
+              <p class="text-danger" id="education_2_error"></p>
+            </div>
+            <div class="col-lg-2">
+              <label class="pb-2 fw-bold" for="">* Examination Number</label>
+              {{education2.examination_number}}
+              <p class="text-danger" id="education_2_error"></p>
+            </div>
+            <div class="col-lg-2">
+              <label class="pb-2 fw-bold" for="">* Examination Year</label>
+              {{education2.examination_year}}
+              <p class="text-danger" id="education_2_error"></p>
+            </div>
+          </div>
+          <div class="row ps-3 pb-4">
+            <div class="col-lg-1 d-flex justify-content-center align-items-end"><h4>1.</h4></div>
+            <div class="col-lg-2">
+              <label class="pb-2 fw-bold" for="">* Subjects</label>
+              {{education2.subject1}}
+              <p class="text-danger" id="education_2_error"></p>
+            </div>
+            <div class="col-lg-1">
+              <label class="pb-2 fw-bold" for="">* Grades</label>
+              {{education2.grade1}}
+              <p class="text-danger" id="education_2_error"></p>
+            </div>
+          </div>
+          <div class="row ps-3 pb-4">
+            <div class="col-lg-1 d-flex justify-content-center align-items-end"><h4>2.</h4></div>
+            <div class="col-lg-2">
+              {{education2.subject2}}
+              <p class="text-danger" id="education_2_error"></p>
+            </div>
+            <div class="col-lg-1">
+              {{education2.grade2}}
+              <p class="text-danger" id="education_2_error"></p>
+            </div>
+          </div>
+          <div class="row ps-3 pb-4">
+            <div class="col-lg-1 d-flex justify-content-center align-items-end"><h4>3.</h4></div>
+            <div class="col-lg-2">
+              {{education2.subject3}}
+              <p class="text-danger" id="education_2_error"></p>
+            </div>
+            <div class="col-lg-1">
+              {{education2.grade3}}
+              <p class="text-danger" id="education_2_error"></p>
+            </div>
+          </div>
+          <div class="row ps-3 pb-4">
+            <div class="col-lg-1 d-flex justify-content-center align-items-end"><h4>4.</h4></div>
+            <div class="col-lg-2">
+              {{education2.subject4}}
+              <p class="text-danger" id="education_2_error"></p>
+            </div>
+            <div class="col-lg-1">
+              {{education2.grade4}}
+              <p class="text-danger" id="education_2_error"></p>
+            </div>
+          </div>
+          <div class="row ps-3 pb-4">
+            <div class="col-lg-1 d-flex justify-content-center align-items-end"><h4>5.</h4></div>
+            <div class="col-lg-2">
+              {{education2.subject5}}
+              <p class="text-danger" id="education_2_error"></p>
+            </div>
+            <div class="col-lg-1">
+              {{education2.grade5}}
+              <p class="text-danger" id="education_2_error"></p>
+            </div>
+          </div>
+          <div class="row ps-3 pb-4">
+            <div class="col-lg-1 d-flex justify-content-center align-items-end"><h4>6.</h4></div>
+            <div class="col-lg-2">
+              {{education2.subject6}}
+              <p class="text-danger" id="education_2_error"></p>
+            </div>
+            <div class="col-lg-1">
+              {{education2.grade6}}
+              <p class="text-danger" id="education_2_error"></p>
+            </div>
+          </div>
+          <div class="row ps-3 pb-4">
+            <div class="col-lg-1 d-flex justify-content-center align-items-end"><h4>7.</h4></div>
+            <div class="col-lg-2">
+              {{education2.subject7}}
+              <p class="text-danger" id="education_2_error"></p>
+            </div>
+            <div class="col-lg-1">
+              {{education2.grade7}}
+              <p class="text-danger" id="education_2_error"></p>
+            </div>
+          </div>
+          <div class="row ps-3 pb-4">
+            <div class="col-lg-1 d-flex justify-content-center align-items-end"><h4>8.</h4></div>
+            <div class="col-lg-2">
+              {{education2.subject8}}
+              <p class="text-danger" id="education_2_error"></p>
+            </div>
+            <div class="col-lg-1">
+              {{education2.grade8}}
+              <p class="text-danger" id="education_2_error"></p>
+            </div>
+          </div>
+          <div class="row ps-3 pb-4">
+            <div class="col-lg-1 d-flex justify-content-center align-items-end"><h4>9.</h4></div>
+            <div class="col-lg-2">
+              {{education2.subject9}}
+              <p class="text-danger" id="education_2_error"></p>
+            </div>
+            <div class="col-lg-1">
+              {{education2.grade9}}
+              <p class="text-danger" id="education_2_error"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </form>
+</div>
