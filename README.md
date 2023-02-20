@@ -8,8 +8,8 @@
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/ameerssb/Student-Registration-System/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/ameerssb/Student-Registration-System/pulls)
+[![GitHub Issues](https://img.shields.io/github/issues/ameerssb/Student-Registration-System.svg)](https://github.com/ameerssb/Student-Registration-System/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/ameerssb/Student-Registration-System.svg)](https://github.com/ameerssb/Student-Registration-System/pulls)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
 </div>
@@ -38,7 +38,7 @@ Developed as a final year university project.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
@@ -71,18 +71,18 @@ superuser password: adminportal
 start server:
 python manage.py runserver
 
-## ⛏️ Built Using <a name = "built_using"></a>
+<!-- ## ⛏️ Built Using <a name = "built_using"></a>
 
 - [MongoDB](https://www.mongodb.com/) - Database
 - [Express](https://expressjs.com/) - Server Framework
 - [VueJs](https://vuejs.org/) - Web Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
+- [NodeJs](https://nodejs.org/en/) - Server Environment -->
 
 ## ✍️ Authors <a name = "authors"></a>
 
 - [@ameerssb](https://github.com/ameerssb) - Idea & Initial work
 
-See also the list of [contributors](https://github.com/ameerssb/The-Documentation-Compendium/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/ameerssb/Student-Registration-System/contributors) who participated in this project.
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 
