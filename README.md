@@ -1,16 +1,19 @@
+
+
+
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
+ <img width=200px height=200px src="static/assets//brand/logo.jpg" alt="Project logo"></a>
 </p>
 
 <h3 align="center">Registration Portal</h3>
 
 <div align="center">
 
-[![Status](https://img.shields.io/badge/status-active-success.svg)]()
+<!-- [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 [![GitHub Issues](https://img.shields.io/github/issues/ameerssb/Student-Registration-System.svg)](https://github.com/ameerssb/Student-Registration-System/issues)
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/ameerssb/Student-Registration-System.svg)](https://github.com/ameerssb/Student-Registration-System/pulls)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE) -->
 
 </div>
 
@@ -24,13 +27,13 @@
 
 - [About](#about)
 - [Getting Started](#getting_started)
-- [Deployment](#deployment)
+<!-- - [Deployment](#deployment) -->
 - [Usage](#usage)
-- [Built Using](#built_using)
-- [TODO](../TODO.md)
+<!-- - [Built Using](#built_using) -->
+<!-- - [TODO](../TODO.md) -->
 - [Contributing](../CONTRIBUTING.md)
 - [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
+<!-- - [Acknowledgments](#acknowledgement) -->
 
 ## 🧐 About <a name = "about"></a>
 
@@ -84,8 +87,8 @@ python manage.py runserver
 
 See also the list of [contributors](https://github.com/ameerssb/Student-Registration-System/contributors) who participated in this project.
 
-## 🎉 Acknowledgements <a name = "acknowledgement"></a>
+<!-- ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 
 - Hat tip to anyone whose code was used
 - Inspiration
-- References
+- References -->
