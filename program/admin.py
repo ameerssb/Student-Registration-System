@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User,Session,Program_Type,Course,Subject,Faculty,Registration,Olevel,Grade,Status,Upload
+from .models import Session,Program_Type,Course,Subject,Faculty,Registration,Olevel,Grade,Status,Upload
 # Register your models here.
 Regfields = []
 Olfields = []
@@ -25,7 +25,6 @@ class OlevelAdmin(admin.ModelAdmin):
     #     obj.user = request.user
     #     super().save_model(request, obj, form, change)
 
-admin.site.register(User)
 admin.site.register(Session)
 admin.site.register(Program_Type)
 admin.site.register(Course)

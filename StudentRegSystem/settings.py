@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 
+from dotenv import load_dotenv
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,12 +31,14 @@ DEBUG = str(os.getenv('DEBUG'))
 
 ALLOWED_HOSTS = []
 if not DEBUG:
-    ALLOWED_HOSTS += os.getenv('ALLOWED_HOSTS')
+    ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS')
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_interface',
+    'colorfield',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'verify_email',
     'account',
+    'staff',
     'program',
     'crispy_forms',
     'crispy_bootstrap5'
@@ -50,6 +56,10 @@ INSTALLED_APPS = [
 LOGIN_URL = '/accounts/login/'
 
 AUTH_USER_MODEL = 'account.User'
+
+X_FRAME_OPTIONS = 'SAMEORIGINS'
+
+SILENCED_SYSTEM_CHECKS = ["security.W019"]
 
 CRISPY_ALLOWED_TEMPLATE_PACK = 'bootstrap5'
 
@@ -91,14 +101,16 @@ WSGI_APPLICATION = 'StudentRegSystem.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ijmb_database',
-        'HOST': 'localhost',
-        'USER': 'ameerssb',
-        'PASSWORD': 'ameer888905',
-        'OPTION': {
-            'init_command': "SET sql_mode='STRICT_ALL_TABLES'"
-        },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'ijmb_database',
+        # 'HOST': 'localhost',
+        # 'USER': 'ameerssb',
+        # 'PASSWORD': 'ameer888905',
+        # 'OPTION': {
+        #     'init_command': "SET sql_mode='STRICT_ALL_TABLES'"
+        # },
     }
 }
 
@@ -127,7 +139,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Lagos'
 
 USE_I18N = True
 
@@ -137,18 +149,30 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+STATIC_ROOT = BASE_DIR / "static-files"
+
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_DIRS = [
+        BASE_DIR / "static"
+]
+
 
 MEDIA_URL = '/media/'
-
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_PORT = os.getenv("EMAIL_PORT")
+EMAIL_USE_SSL = os.getenv("EMAIL_USE_SSL")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
 
 TWILIO_ACCOUNT_SID = str(os.getenv('TWILIO_ACCOUNT_SID'))
 TWILIO_AUTH_TOKEN = str(os.getenv('TWILIO_AUTH_TOKEN'))

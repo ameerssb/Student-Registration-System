@@ -1,7 +1,6 @@
 from django.shortcuts import render,HttpResponse,redirect,get_object_or_404
 from django.views import View
 from .forms import UserCreationForm,EmailForm,VerifyForm,LoginForm
-from .models import User
 from verify_email.email_handler import send_verification_email
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
@@ -28,7 +27,8 @@ class Home(View):
 
         context = {}
 
-        return render(request, 'account/index.html', context)
+        return redirect('Ijmb_Home')
+        # return render(request, 'account/index.html', context)
 
     def post(self,request):
         return render(request, 'account/index.html')
@@ -54,11 +54,14 @@ class Login(View):
             if user is not None:
                 if user.is_active:
                     if u.is_email_verified:
-                        login(request, user)
-                        if request.GET.get('next'):
-                            return redirect(request.GET.get('next'))
-                        else:  
-                            return redirect('Home')
+                        if not u.is_staff:
+                            login(request, user)
+                            if request.GET.get('next'):
+                                return redirect(request.GET.get('next'))
+                            else:  
+                                return redirect('Home')
+                        else:
+                            return redirect('Staff_Login')                            
                     else:
                         messages.error(request,"Your email is not verified, Please verify before login")
                         return redirect('Login')                    
@@ -94,9 +97,14 @@ class Register(View):
             data.country = request.POST['country']
             data.state = request.POST['state']
             data.city = request.POST['city']
-            send_verification_email(request, data)
-            messages.success(request, "Account created. an activation link has been sent to your email inbox to verify your account")
-            return redirect('Login')
+            # data.save()
+            try:
+                send_verification_email(request, data)
+                messages.success(request, "Account created. an activation link has been sent to your email inbox to verify your account")
+                return redirect('Login')
+            except:
+                messages.success(request, "Account not created. check your internet connection or try again later.")
+                return redirect('Register')
         else:
                 messages.error(request, "Registration form is not filled correctly")
                 return redirect('Register')
@@ -136,7 +144,6 @@ class password_reset_request(View):
                         return redirect('Login')
                     return redirect ("/accounts/password_reset/done/")
     
-
 #@method_decorator(login_required, name='get')
 #@method_decorator(verification_required, name='get')
 #@method_decorator(login_required, name='post')

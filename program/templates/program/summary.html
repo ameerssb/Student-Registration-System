@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    
+
+<main class="container-fluid px-4 pt-4 mb-3">
+    <div class="container-fluid border">
+      <nav class="bg-light">
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a class="nav-link active" id="nav-program-tab" data-bs-toggle="tab" data-bs-target="#nav-program" type="button" role="tab" aria-controls="nav-program" aria-selected="true">Program</a>
+          <a class="nav-link" id="nav-personal-tab" data-bs-toggle="tab" data-bs-target="#nav-personal" type="button" role="tab" aria-controls="nav-personal" aria-selected="false">Personal Details</a>
+          <a class="nav-link" id="nav-education-tab" data-bs-toggle="tab" data-bs-target="#nav-education" type="button" role="tab" aria-controls="nav-education" aria-selected="false">Educational Information</a>
+          <a class="nav-link" id="nav-nextofkin-tab" data-bs-toggle="tab" data-bs-target="#nav-nextofkin" type="button" role="tab" aria-controls="nav-nextofkin" aria-selected="false">Next-of-kin Information</a>
+          <a class="nav-link" id="nav-requirement-tab" data-bs-toggle="tab" data-bs-target="#nav-requirement" type="button" role="tab" aria-controls="nav-requirement" aria-selected="false">Requirements</a>                
+        </div>
+      </nav>
+      <div class="tab-content px-3" id="nav-tabContent">
+        {% include 'includes/program.html' %}
+        {% include 'includes/personal.html' %}
+        {% include 'includes/education.html' %}
+        {% include 'includes/nextofkin.html' %}
+        {% include 'includes/requirement.html' %}                        
+      </div>          
+    
+    </div>    
+</main>
+
+{% endblock %}

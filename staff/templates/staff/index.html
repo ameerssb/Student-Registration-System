@@ -1,0 +1,69 @@
+{% extends 'main.html' %}
+
+{% load static %}
+{% block content %}
+
+    
+<main class="container-fluid px-4 py-3 mb-5" style="min-height: 24rem;">
+    {% if messages %}
+    <div class="messages text-center text-success pb-2">
+        {% for message in messages %}
+        <span {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{message}}</span>
+        {% endfor %}
+    </div> 
+    {% endif %}
+    <div class="container-fluid">
+        <nav class="bg-white">
+          <div class="nav" id="nav-tab" role="tablist">
+            <a class="btn btn-sm btn-success me-4" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
+            <a class="btn btn-sm btn-success" id="nav-application-tab" data-bs-toggle="tab" data-bs-target="#nav-application" type="button" role="tab" aria-controls="nav-application" aria-selected="false">Application</a>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade mt-3 border" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="container-fluid py-2 ps-4" style="background-color: #bfbfc5;">
+                    <span class="fs-5 text-white">Welcome</span>
+                </div>
+                <div class="container-fluid py-2">
+                    <div><span>Welcome {{request.user.first_name}} to {{request.user.department}} portal.</span></div>
+                    <div class="pt-2">click on "
+                        <span class="text-danger">Application(s)</span>
+                        " above to view {{session}} application(s).
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade show active mt-3 border" id="nav-application" role="tabpanel" aria-labelledby="nav-application-tab">
+                <div class="container-fluid py-2 ps-4" style="background-color: #bfbfc5;">
+                    <span class="fs-5 text-white">Application(s)</span>
+                </div>
+                <div class="container-fluid py-2">
+                    {% for dat in data %}
+                    <div class="mb-2">
+                        <div><h4>Yumsuk {{dat.p_type}}</h4></div>
+                        <div class="fs-6">
+                            <div><span>Online Application - {{dat.p_type}} - {{dat.created|date:'Y'}}</span></div>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <span>Status: </span><span class="fw-bold">{{dat.status}}</span>
+                                </div>
+                            </div>
+                            <div>
+                                <span>Application fee: </span><span class="fw-bold">{{dat.payment}}</span>
+                            </div>                            
+                            <div><span>Submitted On: </span><span class="fw-bold">{{dat.submitted}}</span></div>
+                            <div class="pt-2">
+                                <a href="{% url 'Staff_Summary' id=dat.application_id %}" class="btn btn-sm btn-success me-3">Summary</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>        
+        </div>            
+    </div>    
+  
+
+
+</main>
+
+{% endblock %}

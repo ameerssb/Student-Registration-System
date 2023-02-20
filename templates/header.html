@@ -1,10 +1,10 @@
 {% load static %}
 {% load tags %}
 
-<nav class="navbar navbar-expand-md navbar-light fixed-top bg-white">
-    <div class="container-fluid m-2">
+<nav class="navbar navbar-expand-md navbar-light fixed-top bg-success">
+    <div class="container-fluid m-1">
       <img class="" src="{% static 'assets/brand/logo.jpg' %}" alt="" width="72" height="57">      
-      <span><a class="navbar-brand text-success fw-bold" href="{% url 'Home' %}">Yumsuk IJMB</a></span>
+      <span><a class="navbar-brand text-white fw-bold ps-lg-3" href="{% url 'Home' %}">IJMB Registration Portal</a></span>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -13,17 +13,17 @@
         </ul>
         <div class="d-flex justify-content-end">
           {% if user.is_authenticated %}
-          <div class="dropdown pe-5">
-            <a class="btn  btn-success text-decoration-none fs-2 px-3 py-0 pb-1 rounded-circle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">{{user.first_name|first_char}}</a>
-            <div class="dropdown-menu dropdown-menu-sm-end" aria-labelledby="logout">
+          <div class="dropstart pe-5">
+            <button class="btn btn-light rounded-circle fs-5 text-success dropdown-toggle" type="button" id="dropdownMenuButtonSM" data-bs-toggle="dropdown" aria-expanded="false">{{user.first_name|first_char}}</button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonSM">
               <p class="text-center text-success fw-bold mb-0">Hi, {{user.first_name}}</p>
               <a class="dropdown-item text-center" href="{% url 'password_change' %}">Change Password</a>
               <a class="dropdown-item text-center" href="{% url 'Logout' %}">logout</a>
             </div>
           </div>
           {% else %}
-            <a href="{% url 'Register' %}" class="me-4 btn btn-outline-success rounded-0">Register</a>
-            <a href="{% url 'Login' %}" class="btn btn-success rounded-0">Sign in</a>
+            <a href="{% url 'Register' %}" class="me-4 btn btn-outline-light rounded-0">Register</a>
+            <a href="{% url 'Login' %}" class="btn btn-light text-success rounded-0">Sign in</a>
           {% endif %}
       </div> 
     </div>

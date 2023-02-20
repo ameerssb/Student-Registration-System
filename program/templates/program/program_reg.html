@@ -5,8 +5,6 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    
-    {% include 'header.html' %}
 
 <main class="container-fluid px-4 pt-4 mb-3">
   <div class="modal" id="AddModal" tabindex="-1" aria-labelledby="AddModalTitle" aria-hidden="true">
@@ -93,5 +91,26 @@
     </div>
 </main>
 
-    {% include 'footer.html' %}
+<script type="text/javascript">
+  var st_o = "{{personal.state_of_origin.value}}";
+  var st = "{{personal.state.value}}";
+  var lg = "{{personal.lga.value}}";
+  var post_type = "{{personal.post_type.value}}";
+  var file_photo_passport = document.getElementById("id_file_photo_passport");
+  var file_identification = document.getElementById("id_file_identification");
+  var file_first_certificate = document.getElementById("id_file_first_certificate");
+  var file_first_testimonial = document.getElementById("id_file_first_testimonial");
+  var file_second_certificate = document.getElementById("id_file_second_certificate");
+  var file_second_testimonial = document.getElementById("id_file_second_testimonial");
+  var file_awaiting_exam_slip = document.getElementById("id_file_awaiting_exam_slip");
+  var file_scratch_card = document.getElementById("id_file_scratch_card");
+  var file1 = "{{requirement.file_photo_passport.value}}";
+  var file2 = "{{requirement.file_identification.value}}";
+  var file3 = "{{requirement.file_first_certificate.value}}";
+  var file4 = "{{requirement.file_first_testimonial.value}}";
+  var file5 = "{{requirement.file_second_certificate.value}}";
+  var file6 = "{{requirement.file_second_testimonial.value}}";
+  var file7 = "{{requirement.file_awaiting_exam_slip.value}}";
+  var file8 = "{{requirement.file_scratch_card.value}}"; 
+</script>
 {% endblock %}

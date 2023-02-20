@@ -126,3 +126,76 @@ class DoneForm(ModelForm):
     class Meta:
         model = Registration
         fields = ('status',)
+    
+class SummaryProgramForm(ModelForm):
+    class Meta:
+        model = Registration
+        fields = ('session','p_type','faculty','course','p_subject1','p_subject2','p_subject3')
+        widgets = {
+            'session' : forms.Select(),
+        }
+    def __init__(self, *args, **kwargs):
+        super(SummaryProgramForm,self).__init__(*args,**kwargs)
+        for i in self.fields:
+            self.fields[i].widget.attrs['readonly'] = True
+            self.fields[i].widget.attrs['class'] = 'form-control'
+
+class SummaryPersonalForm(ModelForm):
+    class Meta:
+        model = Registration
+        fields = ('first_name','last_name','other_name','dob','gender','marital_status','disability','disability_type','state_of_origin','previous_ijmb_number',
+        'id_type','id_number','id_issued','id_expiry','email','phone','address','postal','state','lga','post_type')
+        widgets = {
+            'state' : forms.Select(),
+            'state_of_origin' : forms.Select(),
+            'lga' : forms.Select(),
+            'dob' : forms.DateInput(attrs={'type':'date'}),
+            'id_issued' : forms.DateInput(attrs={'type':'date'}),
+            'id_expiry' : forms.DateInput(attrs={'type':'date'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(SummaryPersonalForm,self).__init__(*args,**kwargs)
+        not_required = ('other_name','previous_ijmb_number','id_issued','id_expiry','disability_type')
+        select = ('gender','marital_status','disability','state_of_origin','id_type','state','lga',)
+        for i in self.fields:
+            self.fields[i].widget.attrs['readonly'] = True
+            self.fields[i].widget.attrs['class'] = 'form-control'
+
+class SummaryEducationForm(ModelForm):
+    class Meta:
+        model = Olevel
+        exclude = ('registration',)
+
+    def __init__(self, *args, **kwargs):
+        super(SummaryEducationForm,self).__init__(*args,**kwargs)
+        select = ('registration','o_level_status','disability','examination_type')
+        for i in self.fields:
+            self.fields[i].widget.attrs['readonly'] = True
+            self.fields[i].widget.attrs['class'] = 'form-control'
+
+class SummaryNextOfKinForm(ModelForm):
+    class Meta:
+        model = Registration
+        fields = ('next_of_kin_name','next_of_kin_email','next_of_kin_phone','next_of_kin_address','next_of_kin_relationship','next_of_kin_occupation','next_of_kin_occupation_address','post_type')
+
+    def __init__(self, *args, **kwargs):
+        super(SummaryNextOfKinForm,self).__init__(*args,**kwargs)
+        not_required = ('next_of_kin_email')
+        select = ('next_of_kin_relationship',)
+        for i in self.fields:
+            self.fields[i].widget.attrs['readonly'] = True
+            self.fields[i].widget.attrs['class'] = 'form-control'
+
+class SummaryRequiremtForm(ModelForm):
+    class Meta:
+        model = Registration
+        fields = ('file_photo_passport','file_identification','file_first_certificate','file_first_testimonial','file_second_certificate',
+        'file_second_testimonial','file_awaiting_exam_slip', 'file_scratch_card','post_type')
+
+    def __init__(self, *args, **kwargs):
+        super(SummaryRequiremtForm,self).__init__(*args,**kwargs)
+        required = ('file_photo_passport','file_identification')
+        for i in self.fields:
+            self.fields[i].widget.attrs['readonly'] = True
+            self.fields[i].widget.attrs['class'] = 'form-control'
