@@ -18,7 +18,7 @@ class Home(View):
     def get(self,request):
         staff = User.objects.get(email=request.user)
         if staff.is_superuser:
-            data = Registration.objects.filter(session=self.session_,)            
+            data = Registration.objects.filter(session=self.session_,)
         else:
             staff = Staff.objects.get(user=request.user)
             data = Registration.objects.filter(session=self.session_,payment='Paid',course=staff.department)

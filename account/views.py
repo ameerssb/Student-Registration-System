@@ -54,14 +54,13 @@ class Login(View):
             if user is not None:
                 if user.is_active:
                     if u.is_email_verified:
-                        if not u.is_staff:
                             login(request, user)
                             if request.GET.get('next'):
                                 return redirect(request.GET.get('next'))
-                            else:  
+                            elif u.is_staff:
+                                return redirect('Staff_Home')
+                            else:
                                 return redirect('Home')
-                        else:
-                            return redirect('Staff_Login')                            
                     else:
                         messages.error(request,"Your email is not verified, Please verify before login")
                         return redirect('Login')                    

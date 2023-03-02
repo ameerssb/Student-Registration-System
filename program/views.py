@@ -140,11 +140,8 @@ class Register(View):
     session_ = Session.objects.first()
     def get(self,request):
         data = Registration.objects.filter(user=request.user.pk,session=self.session_)
-        one = ''
-        two = ''
-        if data.count() > 0:
-            one = Olevel.objects.filter(registration=data[0],o_level_status='One Sitting')
-            two = Olevel.objects.filter(registration=data[0],o_level_status='Two Sitting')
+        one = Olevel.objects.filter(registration=data[0],o_level_status='One Sitting')
+        two = Olevel.objects.filter(registration=data[0],o_level_status='Two Sitting')
         if data.count() == 0:
             s = str(datetime.now())
             s = re.sub(r'[^0-9]','',s)
@@ -154,8 +151,16 @@ class Register(View):
         if str(data[0].status) == 'Ongoing Application':
             program  = ProgramForm(instance=data.first())
             personal = PersonalForm(instance=data.first())
-            education1 = EducationForm(instance=one[0])
-            education2 = EducationForm(instance=two[0])       
+            education1 = ''
+            education2 = ''
+            if one.count() > 0:
+                education1 = EducationForm(instance=one.first())
+            if two.count() > 0:
+                education2 = EducationForm(instance=two.first())       
+            else:
+                education1 = EducationForm()
+                education2 = EducationForm()                                
+
             nextofkin = NextOfKinForm(instance=data.first())
             requirement = RequiremtForm(instance=data.first())
             context = {
