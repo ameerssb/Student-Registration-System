@@ -53,17 +53,17 @@ class Login(View):
             u = User.objects.get(email=email)
             if user is not None:
                 if user.is_active:
-                    if u.is_email_verified:
-                            login(request, user)
-                            if request.GET.get('next'):
-                                return redirect(request.GET.get('next'))
-                            elif u.is_staff:
-                                return redirect('Staff_Home')
-                            else:
-                                return redirect('Home')
+                    # if u.is_email_verified:
+                    login(request, user)
+                    if request.GET.get('next'):
+                        return redirect(request.GET.get('next'))
+                    elif u.is_staff:
+                        return redirect('Staff_Home')
                     else:
-                        messages.error(request,"Your email is not verified, Please verify before login")
-                        return redirect('Login')                    
+                        return redirect('Home')
+                    # else:
+                    #     messages.error(request,"Your email is not verified, Please verify before login")
+                    #     return redirect('Login')                    
                 else:
                     messages.error(request,"Your account is disabled, Contact Us via Suppport Team")
                     return redirect('Login')                    
@@ -96,14 +96,14 @@ class Register(View):
             data.country = request.POST['country']
             data.state = request.POST['state']
             data.city = request.POST['city']
-            # data.save()
-            try:
-                send_verification_email(request, data)
-                messages.success(request, "Account created. an activation link has been sent to your email inbox to verify your account")
-                return redirect('Login')
-            except:
-                messages.success(request, "Account not created. check your internet connection or try again later.")
-                return redirect('Register')
+            data.save()
+            # try:
+            #     send_verification_email(request, data)
+            #     messages.success(request, "Account created. an activation link has been sent to your email inbox to verify your account")
+            return redirect('Login')
+            # except:
+            #     messages.success(request, "Account not created. check your internet connection or try again later.")
+            #     return redirect('Register')
         else:
                 messages.error(request, "Registration form is not filled correctly")
                 return redirect('Register')
