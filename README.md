@@ -1,11 +1,6 @@
 
 
 
-<p align="center">
-  <a href="" rel="noopener">
- <img width=200px height=200px src="static/assets//brand/logo.jpg" alt="Project logo"></a>
-</p>
-
 <h3 align="center">Registration Portal</h3>
 
 <div align="center">
@@ -68,18 +63,17 @@ install packages of requirements.txt:
 
 pip install > requirements.txt
 
-superuser email: admin@yumsukijmb.edu.ng
-superuser password: adminportal
+create superuser:
+python manage.py createsuperuser
 
 start server:
 python manage.py runserver
 
-<!-- ## ⛏️ Built Using <a name = "built_using"></a>
+## ⛏️ Built Using <a name = "built_using"></a>
 
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment -->
+- [SqLite3](https://regportal.pythonanywhere.com) - Database
+- [Django](https://regportal.pythonanywhere.com) - Web Framework
+- [Python](https://regportal.pythonanywhere.com) - Server Environment
 
 ## ✍️ Authors <a name = "authors"></a>
 
@@ -92,3 +86,5 @@ See also the list of [contributors](https://github.com/ameerssb/Student-Registra
 - Hat tip to anyone whose code was used
 - Inspiration
 - References -->
+
+This project is licensed under the MIT License.
